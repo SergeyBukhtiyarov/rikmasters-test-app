@@ -14,7 +14,7 @@ services:
         max_attempts: 5
         window: 20s
     environment:
-      DB_URL: jdbc:postgresql://postgres:5432/test-app
+      DB_URL: jdbc:postgresql://postgres-driver:5432/driver
       DB_USER: sa
       DB_PASSWORD: sa
       KAFKA_URL: http://kafka:9092
@@ -34,7 +34,7 @@ services:
         max_attempts: 5
         window: 20s
     environment:
-      DB_URL: jdbc:postgresql://postgres:5432/test-app
+      DB_URL: jdbc:postgresql://postgres-vehicle:5432/vehicle
       DB_USER: sa
       DB_PASSWORD: sa
       KAFKA_URL: http://kafka:9092
@@ -84,22 +84,33 @@ services:
     networks:
       - rickmastersnetwork
 
-  postgres:
+  postgres-vehicle:
     image: postgres:14
+
     environment:
       - POSTGRES_USER=sa
       - POSTGRES_PASSWORD=sa
-      - POSTGRES_DB=test-app
-    container_name: 'postgres-testapp-db'
-#    volumes:
-#      - testappvolume:/var/lib/postgresql/data
+      - POSTGRES_DB=vehicle
+    container_name: 'vehicle-db'
     restart: always
     ports:
-      - "5432:5432"
+      - "15432:5432"
     networks:
       - rickmastersnetwork
-#volumes:
-#  testappvolume:
-#    external: true
+
+  postgres-driver:
+    image: postgres:14
+
+    environment:
+      - POSTGRES_USER=sa
+      - POSTGRES_PASSWORD=sa
+      - POSTGRES_DB=driver
+    container_name: 'driver-db'
+    restart: always
+    ports:
+      - "15433:5432"
+    networks:
+      - rickmastersnetwork
+
 networks:
   rickmastersnetwork:
