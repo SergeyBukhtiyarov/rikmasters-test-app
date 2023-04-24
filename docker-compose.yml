@@ -1,0 +1,105 @@
+version: '3'
+services:
+  driver-service:
+    build: ./driver-service
+    container_name: 'driver-service'
+    ports:
+      - "8081:38081"
+    networks:
+      - rickmastersnetwork
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 20s
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/test-app
+      DB_USER: sa
+      DB_PASSWORD: sa
+      KAFKA_URL: http://kafka:9092
+      EUREKA_URL: http://eureka:8761/eureka
+
+  vehicle-service:
+    build: ./vehicle-service
+    container_name: 'vehicle-service'
+    ports:
+      - "8082:38082"
+    networks:
+      - rickmastersnetwork
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 20s
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/test-app
+      DB_USER: sa
+      DB_PASSWORD: sa
+      KAFKA_URL: http://kafka:9092
+      EUREKA_URL: http://eureka:8761/eureka
+
+  eureka:
+    container_name: 'eureka-server'
+    build: ./eureka-server
+    restart: always
+    networks:
+      - rickmastersnetwork
+
+  gateway:
+    container_name: 'gateway-server'
+    build: ./gateway-server
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - rickmastersnetwork
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: 'zookeeper'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 22181:2181
+    networks:
+      - rickmastersnetwork
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: 'kafka'
+    depends_on:
+      - zookeeper
+    ports:
+      - 29092:29092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - rickmastersnetwork
+
+  postgres:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=sa
+      - POSTGRES_PASSWORD=sa
+      - POSTGRES_DB=test-app
+    container_name: 'postgres-testapp-db'
+#    volumes:
+#      - testappvolume:/var/lib/postgresql/data
+    restart: always
+    ports:
+      - "5432:5432"
+    networks:
+      - rickmastersnetwork
+#volumes:
+#  testappvolume:
+#    external: true
+networks:
+  rickmastersnetwork:

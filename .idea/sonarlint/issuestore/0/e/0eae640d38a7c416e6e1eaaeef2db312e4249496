@@ -1,0 +1,16 @@
+
+W	java:S125"<This block of commented-out lines of code should be removed.(Çòûn8ÿƒ£òù0
+c
+java:S1128"GRemove this unused import 'org.springframework.boot.ApplicationRunner'.(ÃëòN8€„£òù0
+e
+java:S1128"HRemove this unused import 'org.springframework.context.annotation.Bean'.(‚î‰Ş8€„£òù0
+g
+java:S1128"KRemove this unused import 'ru.rikmasters.test.driverservice.entity.Driver'.(Ü¬ò8€„£òù0
+v
+java:S1128	"YRemove this unused import 'ru.rikmasters.test.driverservice.repository.DriverRepository'.(—àù»8„£òù0
+G
+java:S1128"*Remove this unused import 'java.sql.Date'.(ÙÀ½Ê8„£òù0
+R
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8„£òù0
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8„£òù0

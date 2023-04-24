@@ -1,0 +1,22 @@
+
+o	java:S116"ZRename this field "API_DRIVER_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğåó
+v	java:S116"[Rename this field "API_VEHICLE_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼æÈ[8ŠÀí›ú0
+z	java:S116"YRename this field "DRIVER_SERVICE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸõÈêøÿÿÿÿ8Êäî›ú0
+{	java:S116"ZRename this field "VEHICLE_SERVICE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹×õëüÿÿÿÿ8Œ ï›ú0
+7
+java:S1170"!Make this final field static too.(Ğåó
+6
+java:S1170"!Make this final field static too.(¼æÈ[
+C
+java:S1170"!Make this final field static too.(ŸõÈêøÿÿÿÿ8¤ûì›ú0
+C
+java:S1170"!Make this final field static too.(¹×õëüÿÿÿÿ8¤ûì›ú0
+W
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(Ğåó
+V	java:S125"<This block of commented-out lines of code should be removed.(‰’Šºşÿÿÿÿ
+V
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(¼æÈ[
+G
+java:S35992",Use another way to initialize this instance.(›•Ê½úÿÿÿÿ
+t
+java:S11712"YMove the contents of this initializer to a standard constructor or to field initializers.(›•Ê½úÿÿÿÿ

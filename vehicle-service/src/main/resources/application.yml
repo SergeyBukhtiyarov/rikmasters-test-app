@@ -1,0 +1,41 @@
+server:
+  port: 38082
+
+spring:
+  application:
+    name: vehicle-service
+  datasource:
+    #    url: jdbc:postgresql://localhost:15433/test-app
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  kafka:
+    #    bootstrap-servers: "localhost:29092"
+    bootstrap-servers: ${KAFKA_URL}
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: create
+  flyway:
+    enabled: false
+
+eureka:
+  client:
+    serviceUrl:
+#      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+      defaultZone: ${EUREKA_URL}
+  instance:
+    preferIpAddress: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+
+springdoc:
+  api-docs:
+    path: /vehicle
+  swagger-ui:
+    path: /api.html
